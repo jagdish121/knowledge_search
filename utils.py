@@ -29,9 +29,11 @@ def embed_texts(chunks):
     embeddings = embedder.encode(chunks).tolist()
     return embeddings
 
-def initialize_qdrant(collection_name):
-    client = QdrantClient(host="localhost",
-        port=6333,)  # In-memory for free local use
+def initialize_qdrant(collection_name, cluster_url, qdrant_key):
+    client = QdrantClient(
+    url=cluster_url, 
+    api_key=qdrant_key,
+)  # In-memory for free local use
     client.recreate_collection(
         collection_name=collection_name,
         vectors_config=VectorParams(size=384, distance=Distance.COSINE)
@@ -53,7 +55,7 @@ def split_text(text, max_length=512):
     return chunks
 
 # Preprocess text (e.g., lowercase, remove punctuation)
-def preprocess_text(text):
+def preprocess_text_lowercase(text):
     return text.lower()  # Simple preprocessing, you can enhance it
 
 # Function to upload FAQ data to Qdrant

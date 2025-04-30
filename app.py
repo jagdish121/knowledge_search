@@ -7,10 +7,12 @@ import requests
 # Groq API settings
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_API_KEY = st.secrets.get("GROQ_API_KEY") or os.getenv("GROQ_API_KEY")
+QDRANT_API_KEY = st.secrets.get("QDRANT_API_KEY") or os.getenv("QDRANT_API_KEY")
+QDRANT_CLUSTER_URL = st.secrets.get("QDRANT_CLUSTER_URL") or os.getenv("QDRANT_CLUSTER_URL")
 
 # Initialize DB
 COLLECTION_NAME = "pdf_chunks"
-client = initialize_qdrant(COLLECTION_NAME)
+client = initialize_qdrant(COLLECTION_NAME, QDRANT_CLUSTER_URL, QDRANT_API_KEY)
 
 st.title("📚 Knowledge Search System")
 st.write("Upload your PDF, and ask anything!")
