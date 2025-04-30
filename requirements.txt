@@ -36,7 +36,6 @@ pydeck==0.9.1
 PyMuPDF==1.25.5
 python-dateutil==2.9.0.post0
 pytz==2025.2
-pywin32==310
 qdrant-client==1.14.2
 referencing==0.36.2
 requests==2.32.3

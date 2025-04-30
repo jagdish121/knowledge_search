@@ -64,14 +64,12 @@ if uploaded_file:
             "Content-Type": "application/json"
         }
         response = requests.post(GROQ_API_URL, json=payload, headers=headers)
-        breakpoint()
         result = response.json()
 
         # Initialize reply with a default value
         reply = "Sorry, I couldn't find any response."
 
         if 'choices' in result:
-            breakpoint()
             reply = result['choices'][0]['message']['content']
         else:
             st.error("❌ Error: No choices found in response.")
